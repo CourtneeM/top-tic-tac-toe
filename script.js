@@ -43,9 +43,11 @@ const playerMove = (() => {
   }
 
   for(let i = 0; i < square.length; i++) {
-    square[i].addEventListener('click', function(e) {
-      gameBoard.board[i] = symbol;
-      square[i].textContent = symbol;
+    square[i].addEventListener('click', function() {
+      if(gameBoard.board[i] === "") {
+        gameBoard.board[i] = symbol;
+        square[i].textContent = symbol;
+      }
       console.log(gameBoard.board);
     })
   }
