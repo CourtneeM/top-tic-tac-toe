@@ -1,8 +1,7 @@
-const main = document.querySelector('main');
+const boardSection = document.querySelector('#board');
 const header = document.querySelector('header');
 var activeBtn = document.querySelector('.active');
 const buttons = document.querySelectorAll('button');
-
 
 const gameBoard = {
   board: ["","","","","","","","",""],
@@ -10,12 +9,24 @@ const gameBoard = {
     for(let i = 0; i < 9; i++) {
       const div = document.createElement('div');
       div.textContent = gameBoard.board[i];
-      main.appendChild(div);
+      boardSection.appendChild(div);
     }
   }
 }
 
+const startGame = () => {
+  let startScreen = document.querySelector('#start-screen');
+  let startButton = document.querySelector('#start-screen>button')
+  startButton.addEventListener('click', function() {
+    startScreen.style.display = "none";
+  })
+}
+
+startGame();
+
 gameBoard.createBoard();
+
+
 
 const player = (() => {
   
@@ -24,7 +35,7 @@ const player = (() => {
 
 
 const playerMove = (() => {
-  const square = document.querySelectorAll('div');
+  const square = boardSection.querySelectorAll('div');
   let symbol = activeBtn.textContent;
 
   for(let i = 0; i < buttons.length; i++) {

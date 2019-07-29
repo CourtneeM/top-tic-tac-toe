@@ -13,7 +13,7 @@ h1 {
   border-bottom: 1px solid #000;
 }
 
-main {
+#board {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -23,7 +23,7 @@ main {
   width: 800px
 }
 
-div {
+#board>div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,17 +32,17 @@ div {
   font-size: 5rem;
 }
 
-div:nth-child(2), div:nth-child(8) {
+#board>div:nth-child(2), #board>div:nth-child(8) {
   border-left: 3px solid #000;
   border-right: 3px solid #000;
 }
 
-div:nth-child(4), div:nth-child(6) {
+#board>div:nth-child(4), #board>div:nth-child(6) {
   border-top: 3px solid #000;
   border-bottom: 3px solid #000;
 }
 
-div:nth-child(5) {
+#board>div:nth-child(5) {
   border: 3px solid #000;
 }
 
@@ -60,4 +60,38 @@ div:nth-child(5) {
   font-size: 1.1rem;
   background-color: #333;
   color: #fff;
+}
+
+#start-screen {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.863);
+  font-size: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+#start-screen p {
+  margin: 9px;
+}
+
+#start-screen input {
+  margin: 0 20px;
+  padding: 10px;
+}
+
+#start-screen button {
+  position: absolute;
+  top: 530px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: green;
+  border: 1px solid #000;
+  color: #fff;
+  cursor: pointer;
 }
