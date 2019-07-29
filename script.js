@@ -55,7 +55,7 @@ const playerMove = () => {
   
   for(let i = 0; i < square.length; i++) {
     square[i].addEventListener('click', function() {
-      if(winGame().gameWon) {
+      if(winGame().gameOver) {
         square[i].disabled = true;
       } else if(gameBoard.board[i] === "") {
         gameBoard.board[i] = symbol;
@@ -68,7 +68,7 @@ const playerMove = () => {
 };
 
 const winGame = () => {
-  let gameWon = false;
+  let gameOver = false;
   const board = gameBoard.board;
   const winTopLine = (board[0] === "X" && board[1] === "X" && board[2] === "X") || 
   (board[0] === "O" && board[1] === "O" && board[2] === "O");
@@ -94,7 +94,10 @@ const winGame = () => {
     winLeftLine || winCenterLine || winRightLine || 
     winTopLeftDiagonal || winTopRightDiagonal) {
     console.log("You win!");
-    gameWon = true;
+    gameOver = true;
+  } else if(!board.includes("")) {
+    console.log("It's a tie!")
+    gameOver = true;
   }
-  return { gameWon };
+  return { gameOver };
 }
