@@ -13,17 +13,26 @@ const gameBoard = {
 }
 
 const player = () => {
-  let playerOne = document.querySelector('#player-one').value;
-  let playerTwo = document.querySelector('#player-two').value;
-  let winner = document.createElement('p');
-  winner.setAttribute('id', 'winner');
-  if(winGame().symbol === "X") {
-    winner.textContent = `${playerOne} wins!`;
-    header.appendChild(winner);
-  } else if(winGame().symbol === "O") {
-    winner.textContent = `${playerTwo} wins!`;
-    header.appendChild(winner);
+  let playerOne = () => {
+    let name = document.querySelector('#player-one').value;
+    let symbol = "X";
+    return { name, symbol };
   }
+  let playerTwo = () => { 
+    let name = document.querySelector('#player-two').value;
+    let symbol = "O";
+    return { name, symbol };
+  }
+  return { playerOne, playerTwo };
+  // let winner = document.createElement('p');
+  // winner.setAttribute('id', 'winner');
+  // if(winGame().symbol === "X") {
+  //   winner.textContent = `${playerOne().name} wins!`;
+  //   header.appendChild(winner);
+  // } else if(winGame().symbol === "O") {
+  //   winner.textContent = `${playerTwo().name} wins!`;
+  //   header.appendChild(winner);
+  // }
 };
 
 const startGame = (() => {
@@ -62,28 +71,27 @@ const playGame = () => {
   
   for(let i = 0; i < square.length; i++) {
     square[i].addEventListener('click', function() {
-      if(winGame().gameOver) {
-        square[i].disabled = true;
+      debugger;
+      if(square[i].disabled === true) {
         return;
+      } else if(winGame().gameOver) {
+        square[i].disabled = true;
+        resetGame();
       } else if(gameBoard.board[i] === "") {
         gameBoard.board[i] = symbol;
         square[i].textContent = symbol;
       }
-
-      if(winGame().gameOver) {
-        player();
-        resetGame();
-      }
+      
       console.log(gameBoard.board);
-      winGame();
     })
   }
 };
 
 const winGame = () => {
-  let gameOver = false;
-  let symbol;
   const board = gameBoard.board;
+  let gameOver = false;
+  let winner = document.createElement('p');
+  winner.setAttribute('id', 'winner');
 
   const winTopLineX = (board[0] === "X" && board[1] === "X" && board[2] === "X");
   const winTopLineO = (board[0] === "O" && board[1] === "O" && board[2] === "O");
@@ -112,18 +120,20 @@ const winGame = () => {
   if(winTopLineX || winMiddleLineX || winBottomLineX || 
     winLeftLineX || winCenterLineX || winRightLineX || 
     winTopLeftDiagonalX || winTopRightDiagonalX) {
-    gameOver = true;
-    symbol = "X";
+      gameOver = true;
+      winner.textContent = `${player().playerOne().name} wins!`;
+      header.appendChild(winner);
   } else if(winTopLineO || winMiddleLineO || winBottomLineO || 
     winLeftLineO || winCenterLineO || winRightLineO || 
     winTopLeftDiagonalO || winTopRightDiagonalO) {
       gameOver = true;
-      symbol = "O";
+      winner.textContent = `${player().playerTwo().name} wins!`;
+      header.appendChild(winner);
   } else if(!board.includes("")) {
     console.log("It's a tie!")
     gameOver = true;
   }
-  return { gameOver, symbol };
+  return { gameOver };
 };
 
 const resetGame = () => {
