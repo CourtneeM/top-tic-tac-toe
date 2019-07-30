@@ -49,7 +49,6 @@ const startGame = (() => {
 
 
 const playGame = () => {
-  const buttons = document.querySelectorAll('button');
   const square = boardSection.querySelectorAll('div');
   // let activeBtn = document.querySelector('.active');
   let symbol = "X";
@@ -68,20 +67,23 @@ const playGame = () => {
   //     return symbol;
   //   });
   // }
-  
+
   for(let i = 0; i < square.length; i++) {
     square[i].addEventListener('click', function() {
       debugger;
       if(square[i].disabled === true) {
         return;
-      } else if(winGame().gameOver) {
-        square[i].disabled = true;
-        resetGame();
       } else if(gameBoard.board[i] === "") {
         gameBoard.board[i] = symbol;
         square[i].textContent = symbol;
+        winGame();
+        if(winGame().gameOver) {
+          for(let j = 0; j < square.length; j++) {
+            square[j].disabled = true;
+          }
+          winGame().displayWinner();
+        }
       }
-      
       console.log(gameBoard.board);
     })
   }
@@ -122,18 +124,22 @@ const winGame = () => {
     winTopLeftDiagonalX || winTopRightDiagonalX) {
       gameOver = true;
       winner.textContent = `${player().playerOne().name} wins!`;
-      header.appendChild(winner);
   } else if(winTopLineO || winMiddleLineO || winBottomLineO || 
     winLeftLineO || winCenterLineO || winRightLineO || 
     winTopLeftDiagonalO || winTopRightDiagonalO) {
       gameOver = true;
       winner.textContent = `${player().playerTwo().name} wins!`;
-      header.appendChild(winner);
   } else if(!board.includes("")) {
-    console.log("It's a tie!")
     gameOver = true;
+    winner.textContent = "It's a tie!";
   }
-  return { gameOver };
+
+  let displayWinner = () => {
+    header.appendChild(winner);
+    resetGame();
+  }
+
+  return { gameOver, displayWinner };
 };
 
 const resetGame = () => {
