@@ -28,6 +28,12 @@ const startGame = (() => {
   const startBtn = document.querySelector('#start-screen>button')
   const startScreen = document.querySelector('#start-screen');
   startBtn.addEventListener('click', function() {
+    if(document.querySelector('#player-one').value === "") {
+      return;
+    }
+    if (document.querySelector('#player-two').value === "") {
+      return;
+    }
     player();
     startScreen.style.display = 'none';
     header.style.display = 'block';
