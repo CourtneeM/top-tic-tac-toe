@@ -113,7 +113,7 @@ h1 {
   font-size: 1.8rem;
 }
 
-@media screen and (max-width: 824px) {
+@media screen and (max-width: 768px), screen and (max-height: 768px) {
   #board {
     width: 500px
   }
@@ -125,15 +125,19 @@ h1 {
   }
 }
 
-@media screen and (max-width: 515px) {
+@media screen and (max-width: 515px), screen and (max-height: 425px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
   #board {
-    width: 300px;
-    height: 50vh;
+    width: 275px;
+    height: 70vh;
   }
 
   #board>div {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     font-size: 4rem;
   }
 
@@ -150,5 +154,50 @@ h1 {
   #start-screen button {
     position: static;
   }
-  
+
+  #winner {
+    margin: 5px;
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 320px), (max-height: 320px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  #board {
+    width: 200px;
+    height: 60vh;
+  }
+
+  #board>div {
+    width: 60px;
+    height: 60px;
+    font-size: 3.5rem;
+  }
+
+  #start-screen {
+    flex-direction: column;
+  }
+
+  #start-screen input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+  }
+
+  #start-screen button {
+    position: static;
+  }
+
+  #reset-btn {
+    padding: 4px 10px;
+    font-size: 1.1rem;
+  }
+
+  #winner {
+    margin: 5px;
+    font-size: 1.5rem;
+  }
 }
