@@ -97,3 +97,17 @@ h1 {
   color: #fff;
   cursor: pointer;
 }
+
+#reset-btn {
+  padding: 7.5px 15px;
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+#winner {
+  font-size: 1.8rem;
+}
