@@ -28,15 +28,15 @@ img {
   flex-wrap: wrap;
   height: 80vh;
   margin: 0 auto;
-  width: 800px
+  width: 650px
 }
 
 #board>div {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 165px;
+  height: 165px;
   font-size: 8rem;
 }
 
@@ -120,16 +120,30 @@ img {
   font-size: 1.8rem;
 }
 
-@media screen and (max-width: 768px), screen and (max-height: 768px) {
+@media screen and (max-width: 1400px), screen and (max-height: 768px) {
   #board {
-    width: 500px
+    width: 500px;
   }
 
   #board>div {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     font-size: 6rem;
   }
+
+  
+}
+
+@media screen and (max-width: 768px), screen and (max-height: 768px) {
+  #board {
+    width: 400px;
+  }
+
+  #board>div {
+    width: 100px;
+    height: 100px;
+    font-size: 6rem;
+  }  
 }
 
 @media screen and (max-width: 515px), screen and (max-height: 425px) {
